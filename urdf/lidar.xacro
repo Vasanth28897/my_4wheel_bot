@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    
+    <!-- camera/sensor mount -->
+    <joint name="lidar_joint" type="fixed">
+        <parent link="mount_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 0.0 0.0"/> 
+    </joint>
+
+    <link name="lidar_link">
+        <visual>                     
+            <geometry>
+                <cylinder radius="0.08" length="0.1"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.0 0.0 0.8 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.08" length="0.1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.1"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <inertia ixx="${(1/12) * mass * (3*radius*radius + length*length)}" ixy="0.0" ixz="0.0"
+                    iyy="${(1/12) * mass * (3*radius*radius + length*length)}" iyz="0.0"
+                    izz="${(1/12) * mass * (radius*radius)}" />
+        </inertial>  
+    </link>
+
+    <gazebo reference = "lidar_link">
+        <material> Gazebo/Blue </material>
+        <sensor name = "laser" type = "ray">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>720</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-2.356194</min_angle>  <!-- -135 degrees in radians -->
+                        <max_angle>2.356194</max_angle>   <!-- 135 degrees in radians -->
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.02</min>   <!-- Minimum range in meters -->
+                    <max>15.0</max>   <!-- Maximum range in meters -->
+                    <resolution>0.01</resolution>   <!-- Range resolution in meters -->
+                </range>
+            </ray>
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>lidar_link</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo> 
+ 
+</robot>
+
