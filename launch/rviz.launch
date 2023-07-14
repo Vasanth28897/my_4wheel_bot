@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
 <launch>
     
-    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.xacro'"/>
+    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/my_rover1.urdf'"/>
     <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
     
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
     <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/>
+
+    <!-- <node name="joint_state_controller" pkg="controller_manager" type="spawner" respawn="false"
+        args="joint_state_controller" output="screen" />
+
+    <node name="diff_drive_controller" pkg="controller_manager" type="spawner" respawn="false"
+        args="diff_drive_controller" output="screen" /> -->
+
     <node pkg="rviz" type="rviz" name="rviz" args = "-d $(arg rviz_config_file)"/>
         
 </launch>

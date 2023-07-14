@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- Define the transmission -->
+<transmission name="transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="front_left_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <joint name="front_right_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <joint name="rear_left_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <joint name="rear_right_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="front_left_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+  <actuator name="front_right_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+  <actuator name="rear_left_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+  <actuator name="rear_right_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<!-- Define the controller -->
+<controller name="diff_drive_controller" type="diff_drive_controller/DiffDriveController">
+  <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  <joint name="front_left_wheel_joint"/>
+  <joint name="front_right_wheel_joint"/>
+  <joint name="rear_left_wheel_joint"/>
+  <joint name="rear_right_wheel_joint"/>
+  <pose>0 0 0 0 0 0</pose>
+  <publish_rate>50</publish_rate>
+  <base_width>0.4</base_width> <!-- Adjust the value based on your robot's dimensions -->
+  <enable_odom_tf>true</enable_odom_tf>
+</controller>
+
+
+</robot>

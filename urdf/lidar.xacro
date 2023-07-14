@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_rover">
     
     <!-- camera/sensor mount -->
     <joint name="lidar_joint" type="fixed">
@@ -28,14 +27,10 @@
         <inertial>
             <mass value="0.1"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <inertia ixx="${(1/12) * mass * (3*radius*radius + length*length)}" ixy="0.0" ixz="0.0"
-                    iyy="${(1/12) * mass * (3*radius*radius + length*length)}" iyz="0.0"
-                    izz="${(1/12) * mass * (radius*radius)}" />
-        </inertial>  
-    </link>
-
-    <gazebo reference = "lidar_link">
-        <material> Gazebo/Blue </material>
+            <inertia ixx="0.00024" ixy="0.0" ixz="0.0"
+                    iyy="0.00024" iyz="0.0"
+                    izz="0.00005" />        
+        </inertial>
         <sensor name = "laser" type = "ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
@@ -43,7 +38,7 @@
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>720</samples>
+                        <samples>360</samples>
                         <resolution>1</resolution>
                         <min_angle>-2.356194</min_angle>  <!-- -135 degrees in radians -->
                         <max_angle>2.356194</max_angle>   <!-- 135 degrees in radians -->
@@ -55,14 +50,19 @@
                     <resolution>0.01</resolution>   <!-- Range resolution in meters -->
                 </range>
             </ray>
-            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+            <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
                     <argument>~/out:=scan</argument>
                 </ros>
                 <output_type>sensor_msgs/LaserScan</output_type>
                 <frame_name>lidar_link</frame_name>
             </plugin>
-        </sensor>
+        </sensor> 
+    </link>
+
+    <gazebo reference = "lidar_link">
+        <material> Gazebo/Blue </material>
+
     </gazebo> 
  
 </robot>

@@ -35,9 +35,6 @@
             <publishOdomTF>true</publishOdomTF>
             <publishWheelTF>true</publishWheelTF>
             <publishWheelJointState>true</publishWheelJointState>
-
-            
-                      
         </plugin>
     </gazebo>
 
