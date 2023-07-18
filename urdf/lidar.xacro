@@ -31,38 +31,40 @@
                     iyy="0.00024" iyz="0.0"
                     izz="0.00005" />        
         </inertial>
-        <sensor name = "laser" type = "ray">
+    </link>
+
+    <gazebo reference = "lidar_link">
+        <sensor name = "head_hokuyo_sensor" type = "ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
-            <update_rate>10</update_rate>
+            <update_rate>50</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>360</samples>
+                        <samples>720</samples>
                         <resolution>1</resolution>
                         <min_angle>-2.356194</min_angle>  <!-- -135 degrees in radians -->
                         <max_angle>2.356194</max_angle>   <!-- 135 degrees in radians -->
                     </horizontal>
                 </scan>
                 <range>
-                    <min>0.02</min>   <!-- Minimum range in meters -->
-                    <max>15.0</max>   <!-- Maximum range in meters -->
+                    <min>0.3</min>   <!-- Minimum range in meters -->
+                    <max>15</max>   <!-- Maximum range in meters -->
                     <resolution>0.01</resolution>   <!-- Range resolution in meters -->
                 </range>
+
             </ray>
-            <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
-                <ros>
-                    <argument>~/out:=scan</argument>
+            <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                <!-- <robotNamespace>my_rover</robotNamespace> -->
+                <topicName>/scan</topicName>
+                <!-- <ros>
+                    <remapping>~/out:=scan</remapping>
                 </ros>
-                <output_type>sensor_msgs/LaserScan</output_type>
-                <frame_name>lidar_link</frame_name>
+                <output_type>sensor_msgs/LaserScan</output_type> -->
+                <frameName>lidar_link</frameName>
             </plugin>
         </sensor> 
-    </link>
-
-    <gazebo reference = "lidar_link">
         <material> Gazebo/Blue </material>
-
     </gazebo> 
  
 </robot>

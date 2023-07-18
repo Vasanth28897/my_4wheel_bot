@@ -1,31 +1,36 @@
 <?xml version="1.0"?>
 <launch>
     
-    <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" />
+    <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
+
+    <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
     
-    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.xacro'"/>
+    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
 
     <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
 
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-        args="diff_drive_controller" />
-    
-    <!-- <node name="joint_state_controller" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-        args="joint_state_controller" /> -->
-    
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
+        args = "diff_drive_controller
+                joint_state_controller"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output = "screen"/>
     
-    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/>
+    <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/> -->
 
     <node pkg="rviz" type="rviz" name="rviz" args = "-d $(arg rviz_config_file)"/>
 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="use_sim_time" value="true"/>
+        <arg name="paused" default="false"/>
+        <arg name="use_sim_time" default="true"/>
+        <arg name="gui" default="true"/>
+        <arg name="headless" default="false"/>
+        <arg name="debug" default="false"/>
     </include>
 
-    <!-- <node name="spawning_urdf" pkg="gazebo_ros" type="spawn_model" args = "-urdf -model rover -param robot_description" /> -->
+    <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model my_rover" />
 
-    <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model lidar" />
+    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+        <param name="default_topic" value="/diff_drive_controller/cmd_vel"/>
+    </node>
 
 </launch>
