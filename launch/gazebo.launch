@@ -12,10 +12,9 @@
     <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller
                 joint_state_controller"/>
+
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output = "screen"/>
     
-    <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/> -->
-
     <node pkg="rviz" type="rviz" name="rviz" args = "-d $(arg rviz_config_file)"/>
 
     

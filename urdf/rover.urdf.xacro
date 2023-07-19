@@ -17,7 +17,7 @@
     <joint name="Chassis_joint" type="fixed">
         <parent link="world"/>
         <child link="Chassis"/>
-        <origin xyz="0.0 0.0 0.135" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 0.0 0.165" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>       
     </joint>
     
@@ -25,7 +25,7 @@
 
         <inertial> 
             <mass value="0.5"/>
-            <origin xyz="0.0 0.0 0.135" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.165" rpy="0.0 0.0 0.0"/>
             <!-- refer this "urdf/tutorials/adding physical and collision properties into urdf file" page for the equation -->
             <!-- <inertia ixx="${(constant) * (mass * (height*height + depth*depth))}" ixy="0.0" ixz="0.0" 
                      iyy="${(constant) * (mass * (width*width + depth*depth))}" iyz="0.0" 
@@ -97,7 +97,8 @@
             <parent link="Chassis"/>
             <child link="${name}_wheel"/>
             <origin xyz="${x} ${y} 0.0" rpy="0.0 0.0 0.0"/>
-            <axis xyz="0.0 1.0 0.0"/> 
+            <axis xyz="0.0 1.0 0.0"/>
+            <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="6.0"/> 
         </joint>
         
         <link name="${name}_wheel">
@@ -130,8 +131,8 @@
 
         <gazebo reference = "${name}_wheel">
             <material> Gazebo/Red </material>
-            <mu1 value="200.0"/>
-            <mu2 value="100.0"/>
+            <mu1 value="0.001"/>
+            <mu2 value="0.001"/>
             <kp value="10000000.0" />
             <kd value="1.0" />
         </gazebo>  
@@ -149,10 +150,10 @@
 
 
     <!-- wheel creating using macros -->
-    <xacro:wheel name = "front_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "0.187" y = "0.25"/>
-    <xacro:wheel name = "front_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "0.187" y = "-0.25"/>
-    <xacro:wheel name = "rear_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "-0.187" y = "0.25"/>
-    <xacro:wheel name = "rear_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "-0.187" y = "-0.25"/>
+    <xacro:wheel name = "front_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "0.187" y = "0.245"/>
+    <xacro:wheel name = "front_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "0.187" y = "-0.245"/>
+    <xacro:wheel name = "rear_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "-0.187" y = "0.245"/>
+    <xacro:wheel name = "rear_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "-0.187" y = "-0.245"/>
 
 
 </robot>
