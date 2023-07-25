@@ -4,13 +4,21 @@ publish_rate: 50
 left_wheel: ['front_left_wheel_joint', 'rear_left_wheel_joint']
 right_wheel: ['front_right_wheel_joint', 'rear_right_wheel_joint']
 
-wheel_separation: 0.49
+# left_wheel: ['left_front_wheel_joint', 'left_back_wheel_joint']
+# right_wheel: ['right_front_wheel_joint', 'right_back_wheel_joint']
+
+wheel_separation: 0.49 #0.44
+wheel_radius : 0.033
+base_frame_id: base_link
+odom_frame_id: odom
+enable_odom_tf: true
+estimate_velocity_from_position: false
 
 pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
 twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
 
 # Top level frame (link) of the robot description
-base_frame_id: world
+# base_frame_id: Chassis  #world
 
 # Velocity and acceleration limits for the robot
 linear:
@@ -22,9 +30,9 @@ linear:
 angular:
   z:
     has_velocity_limits    : true
-    max_velocity           : 2.0   # rad/s
+    max_velocity           : 2.0  # rad/s
     has_acceleration_limits: true
-    max_acceleration       : 6.0   # rad/s^2
+    max_acceleration       : 6.0  # rad/s^2
 
 commandTopic: cmd_vel
 

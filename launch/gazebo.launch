@@ -4,8 +4,10 @@
     <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
 
     <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
-    
+        
     <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
+
+    <!-- <param name="robot_description" command="xacro '$(find urdf_sim_tutorial)/urdf/13-diffdrive.urdf.xacro'"/> -->
 
     <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
 
@@ -19,6 +21,7 @@
 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <!-- <arg name="world_name" value="$(find mobile_robot)/worlds/turtlebot3_world.world"/> -->
         <arg name="paused" default="false"/>
         <arg name="use_sim_time" default="true"/>
         <arg name="gui" default="true"/>
@@ -26,7 +29,7 @@
         <arg name="debug" default="false"/>
     </include>
 
-    <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model my_rover" />
+    <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
     <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
         <param name="default_topic" value="/diff_drive_controller/cmd_vel"/>
