@@ -34,7 +34,7 @@ angular:
     has_acceleration_limits: true
     max_acceleration       : 6.0  # rad/s^2
 
-commandTopic: cmd_vel
+commandTopic: /cmd_vel
 
 
 

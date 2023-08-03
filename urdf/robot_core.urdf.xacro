@@ -5,6 +5,8 @@
     
     <xacro:include filename="$(find mobile_robot)/urdf/lidar.xacro"/>
 
+    <xacro:include filename="$(find mobile_robot)/urdf/camera.xacro"/>
+
     <!-- <xacro:include filename="$(find mobile_robot)/description/transmission.urdf"/> -->
 
     <!-- <xacro:include filename="$(find mobile_robot)/description/gazebo_control.xacro"/> -->

@@ -5,9 +5,13 @@
 
     <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
         
-    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
-
-    <!-- <param name="robot_description" command="xacro '$(find urdf_sim_tutorial)/urdf/13-diffdrive.urdf.xacro'"/> -->
+    <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox">
+        <rosparam command="load" file="$(find mobile_robot)/config/mapper_params_online_async.yaml" />
+    </node> 
+    
+    <param name="use_sim_time" value="true"/>
+    
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
 
     <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
 
@@ -21,7 +25,7 @@
 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <!-- <arg name="world_name" value="$(find mobile_robot)/worlds/turtlebot3_world.world"/> -->
+        <arg name="world_name" value="$(find mobile_robot)/worlds/myrover_house.world"/>
         <arg name="paused" default="false"/>
         <arg name="use_sim_time" default="true"/>
         <arg name="gui" default="true"/>
@@ -31,8 +35,14 @@
 
     <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
-    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
         <param name="default_topic" value="/diff_drive_controller/cmd_vel"/>
+    </node> -->
+        #run this command in another terminal when there is no /cmd_vel topic published, but /diff_drive_controller/cmd_vel to move the robot
+        #rosrun teleop_twist_keyboard teleop_twist_keyboard.py --ros-args -r /cmd_vel:=/diff_drive_controller/cmd_vel
+
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output = "screen">
+        <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/>
     </node>
 
 </launch>
