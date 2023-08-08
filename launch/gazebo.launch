@@ -4,10 +4,6 @@
     <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
 
     <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
-        
-    <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox">
-        <rosparam command="load" file="$(find mobile_robot)/config/mapper_params_online_async.yaml" />
-    </node> 
     
     <param name="use_sim_time" value="true"/>
     

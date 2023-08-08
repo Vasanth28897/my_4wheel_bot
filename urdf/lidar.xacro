@@ -49,7 +49,7 @@
                 </scan>
                 <range>
                     <min>0.3</min>   <!-- Minimum range in meters -->
-                    <max>20</max>   <!-- Maximum range in meters -->
+                    <max>30</max>   <!-- Maximum range in meters -->
                     <resolution>0.01</resolution>   <!-- Range resolution in meters -->
                 </range>
 
