@@ -4,6 +4,8 @@
     <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
 
     <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
+
+    <include file="$(find mobile_robot)/launch/slam_gmapping.launch"/> 
     
     <param name="use_sim_time" value="true"/>
     
