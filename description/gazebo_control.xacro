@@ -3,39 +3,24 @@
     
     <gazebo>
         <plugin filename = "libgazebo_ros_diff_drive.so" name = "differential_drive_controller">
-            
-            <!-- wheel info -->
-            <!-- <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
-            <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
-            <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
-            <rightRearJoint>rear_right_wheel_joint</rightRearJoint> -->
-            <leftJoint> ['front_left_wheel_joint', 'rear_left_wheel_joint'] </leftJoint>
-            <rightJoint> ['front_right_wheel_joint', 'rear_right_wheel_joint'] </rightJoint>
-            <wheelSeparation>0.4</wheelSeparation>
-            <wheelDiameter>0.066</wheelDiameter> 
-
-            <!-- limits -->
-            <wheelTorque>100</wheelTorque>
-            <wheelAcceleration> 10.0</wheelAcceleration>
-
-            <!-- odometry -->
-            <odometryFrame>odom</odometryFrame>
-            <odometryTopic>odom</odometryTopic>
-            <odometrySource>1</odometrySource>
-
             <commandTopic>cmd_vel</commandTopic>
-            <robotBaseFrame>Chassis</robotBaseFrame>
-
-            <!-- output -->
-            <updateRate>50.0</updateRate>
-            <publish_odom>true</publish_odom>
-            <publishTf>1</publishTf>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometrySource>world</odometrySource>
             <publishOdomTF>true</publishOdomTF>
-            <publishWheelTF>true</publishWheelTF>
+            <robotBaseFrame>base_link</robotBaseFrame>
+            <publishWheelTF>false</publishWheelTF>
+            <publishTf>true</publishTf>
             <publishWheelJointState>true</publishWheelJointState>
             <legacyMode>false</legacyMode>
+            <updateRate>30</updateRate>
+            <leftJoint>rear_left_wheel_joint</leftJoint>
+            <rightJoint>rear_right_wheel_joint</rightJoint>
+            <wheelSeparation>0.4</wheelSeparation>
+            <wheelDiameter>0.066</wheelDiameter>
+            <wheelAcceleration>1</wheelAcceleration>
+            <wheelTorque>10</wheelTorque>
+            <rosDebugLevel>na</rosDebugLevel>
         </plugin>
     </gazebo>
-
-
 </robot>

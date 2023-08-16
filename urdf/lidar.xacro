@@ -12,7 +12,7 @@
     <link name="lidar_link">
         <visual> 
             <geometry>
-                <cylinder radius="0.08" length="0.1"/>
+                <mesh filename="package://mobile_robot/meshes/lds.stl" scale="0.002 0.002 0.002"/>
             </geometry>
             <material name="">
                 <color rgba="0.0 0.0 0.8 1.0"/>
@@ -25,23 +25,23 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1"/>
+            <mass value="0.114"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <inertia ixx="0.00024" ixy="0.0" ixz="0.0"
-                    iyy="0.00024" iyz="0.0"
-                    izz="0.00005" />        
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                    iyy="0.001" iyz="0.0"
+                    izz="0.001" />        
         </inertial>
     </link>
 
     <gazebo reference = "lidar_link">
-        <sensor name = "head_hokuyo_sensor" type = "ray">
+        <sensor name = "lds_lfcd_sensor" type = "ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>false</visualize>
             <update_rate>50</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>720</samples>
+                        <samples>360</samples>
                         <resolution>1</resolution>
                         <min_angle>-3.14159</min_angle>  <!-- -135 degrees in radians -->
                         <max_angle>3.14159</max_angle>   <!-- 135 degrees in radians -->
@@ -52,9 +52,13 @@
                     <max>30</max>   <!-- Maximum range in meters -->
                     <resolution>0.01</resolution>   <!-- Range resolution in meters -->
                 </range>
-
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
             </ray>
-            <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+            <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
                 <!-- <robotNamespace>my_rover</robotNamespace> -->
                 <topicName>/scan</topicName>
                 <!-- <ros>
