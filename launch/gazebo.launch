@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <launch>
     
-    <!-- <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/> -->
+    <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
 
-    <!-- <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/> -->
+    <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
 
     <include file="$(find mobile_robot)/launch/slam_gmapping.launch"/> 
     
-    <param name="use_sim_time" value="true"/>
+    <!-- <param name="use_sim_time" value="true"/> -->
 
     <!-- <param name="robot_description" command="xacro '$(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro'"/> -->
     <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
 
     <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
 
-    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller
-                joint_state_controller"/> -->
+                joint_state_controller"/>
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
     
@@ -37,7 +37,8 @@
     <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
     <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-        <param name="default_topic" value="/cmd_vel"/>
+        <!-- <param name="default_topic" value="/cmd_vel"/> -->
+        <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/>
     </node>
         #run this command in another terminal when there is no /cmd_vel topic published, but /diff_drive_controller/cmd_vel to move the robot
         #rosrun teleop_twist_keyboard teleop_twist_keyboard.py --ros-args -r /cmd_vel:=/diff_drive_controller/cmd_vel

@@ -9,7 +9,7 @@
 
     <xacro:include filename="$(find mobile_robot)/urdf/imu_plugin.xacro"/>
 
-    <xacro:include filename="$(find mobile_robot)/description/gazebo_control.xacro"/>
+    <!-- <xacro:include filename="$(find mobile_robot)/description/gazebo_control.xacro"/> -->
 
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

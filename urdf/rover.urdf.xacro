@@ -23,7 +23,7 @@
 
     </link>
 
-    <!-- <joint name="base_footprint_joint" type="fixed">
+    <joint name="base_footprint_joint" type="fixed">
         <parent link="base_link"/>
         <child link="base_footprint"/>
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -31,7 +31,7 @@
 
     <link name="base_footprint">
         
-    </link> -->
+    </link>
 
     <joint name="Chassis_joint" type="fixed">
         <parent link="base_link"/>
@@ -136,7 +136,7 @@
     <link name = "${name}_wheel">
         <visual> 
             <geometry>
-                <mesh filename="${path}" scale="0.005 0.005 0.005"/> #length = 0.0182 radius = "0.0660"
+                <mesh filename="${path}" scale="0.005 0.005 0.005"/> #length = 0.0182 radius = "0.0330"
             </geometry>
             <material name="">
                 <color rgba="1.0 0.0 0.0 1.0"/>
@@ -198,6 +198,3 @@
 
 
 </robot>
-
-
-
