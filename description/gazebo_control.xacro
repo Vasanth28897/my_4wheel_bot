@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name = "my_rover">
     
-    <!-- <gazebo>
+    <gazebo>
         <plugin filename = "libgazebo_ros_diff_drive.so" name = "differential_drive_controller">
             <commandTopic>cmd_vel</commandTopic>
             <odometryTopic>odom</odometryTopic>
+            <!-- <num_wheel_pairs> 2 </num_wheel_pairs> -->
             <odometryFrame>odom</odometryFrame>
             <odometrySource>world</odometrySource>
             <publishOdomTF>true</publishOdomTF>
@@ -14,17 +15,19 @@
             <publishWheelJointState>true</publishWheelJointState>
             <legacyMode>false</legacyMode>
             <updateRate>30</updateRate>
-            <leftJoint>rear_left_wheel_joint</leftJoint>
-            <rightJoint>rear_right_wheel_joint</rightJoint>
-            <wheelSeparation>0.4</wheelSeparation>
-            <wheelDiameter>0.066</wheelDiameter>
+            <leftJoint>front_left_wheel_joint</leftJoint>
+            <rightJoint>front_right_wheel_joint</rightJoint>
+            <!-- <leftJoint>rear_left_wheel_joint</leftJoint> -->
+            <!-- <rightJoint>rear_right_wheel_joint</rightJoint> -->
+            <wheelSeparation>0.5</wheelSeparation>
+            <wheelDiameter>0.3</wheelDiameter>
             <wheelAcceleration>1</wheelAcceleration>
             <wheelTorque>10</wheelTorque>
             <rosDebugLevel>na</rosDebugLevel>
         </plugin>
-    </gazebo> -->
+    </gazebo>
 
-    <gazebo>
+    <!-- <gazebo>
         <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
             <updateRate>50.0</updateRate>
             <robotNamespace>/</robotNamespace>
@@ -44,6 +47,6 @@
             <covariance_yaw>0.010000</covariance_yaw>
             <broadcastTF>false</broadcastTF>
         </plugin>
-    </gazebo>
+    </gazebo> -->
 
 </robot>
