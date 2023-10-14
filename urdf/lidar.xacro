@@ -12,7 +12,7 @@
     <link name="lidar_link">
         <visual> 
             <geometry>
-                <mesh filename="package://mobile_robot/meshes/lds.stl" scale="0.002 0.002 0.002"/>
+                <mesh filename="package://my_4wheel_bot/meshes/lds.stl" scale="0.002 0.002 0.002"/>
             </geometry>
             <material name="">
                 <color rgba="0.0 0.0 0.8 1.0"/>

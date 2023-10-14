@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_rover">
     
-    <xacro:include filename="$(find mobile_robot)/urdf/rover.urdf.xacro"/>
+    <xacro:include filename="$(find my_4wheel_bot)/urdf/rover.urdf.xacro"/>
     
-    <xacro:include filename="$(find mobile_robot)/urdf/lidar.xacro"/>
+    <xacro:include filename="$(find my_4wheel_bot)/urdf/lidar.xacro"/>
 
-    <xacro:include filename="$(find mobile_robot)/urdf/camera.xacro"/>
+    <xacro:include filename="$(find my_4wheel_bot)/urdf/camera.xacro"/>
 
-    <xacro:include filename="$(find mobile_robot)/urdf/imu_plugin.xacro"/>
+    <xacro:include filename="$(find my_4wheel_bot)/urdf/imu_plugin.xacro"/>
 
-    <!-- <xacro:include filename="$(find mobile_robot)/description/gazebo_control.xacro"/> -->
+    <!-- <xacro:include filename="$(find my_4wheel_bot)/description/gazebo_control.xacro"/> -->
 
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

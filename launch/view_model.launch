@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
 <launch>
     
-    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/my_rover1.urdf'"/>
-    <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
+    <!--<param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/my_rover.urdf'"/> -->
+    <arg  name="model" default="$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro"/>
+    <arg name="gui" default="true" />
+    
+    <param name="robot_description" command="xacro $(arg model)"/>
+    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
     
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>

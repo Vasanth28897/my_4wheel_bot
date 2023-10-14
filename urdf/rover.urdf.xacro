@@ -204,10 +204,10 @@
   </xacro:macro>
 
     <!-- wheel creating using macros -->
-    <!-- <xacro:wheel name = "front_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "0.2" y = "0.25"/>
-    <xacro:wheel name = "front_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "0.2" y = "-0.25"/>
-    <xacro:wheel name = "rear_left" path ="package://mobile_robot/meshes/right_tire.stl" x = "-0.2" y = "0.25"/>
-    <xacro:wheel name = "rear_right" path ="package://mobile_robot/meshes/left_tire.stl" x = "-0.2" y = "-0.25"/> -->
+    <!-- <xacro:wheel name = "front_left" path ="package://my_4wheel_bot/meshes/right_tire.stl" x = "0.2" y = "0.25"/>
+    <xacro:wheel name = "front_right" path ="package://my_4wheel_bot/meshes/left_tire.stl" x = "0.2" y = "-0.25"/>
+    <xacro:wheel name = "rear_left" path ="package://my_4wheel_bot/meshes/right_tire.stl" x = "-0.2" y = "0.25"/>
+    <xacro:wheel name = "rear_right" path ="package://my_4wheel_bot/meshes/left_tire.stl" x = "-0.2" y = "-0.25"/> -->
 
     <xacro:wheel name = "front_left"    x = "0.2"     y = "0.25"/>
     <xacro:wheel name = "front_right"   x = "0.2"     y = "-0.25"/>

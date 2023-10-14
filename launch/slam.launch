@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <launch>
     
-    <rosparam file="$(find mobile_robot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
+    <rosparam file="$(find my_4wheel_bot)/config/diff_drive_controller.yaml" command="load" ns = "diff_drive_controller"/>
 
-    <rosparam file="$(find mobile_robot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
+    <rosparam file="$(find my_4wheel_bot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
 
-    <include file="$(find mobile_robot)/launch/slam_gmapping.launch"/> 
+    <include file="$(find my_4wheel_bot)/launch/slam_gmapping.launch"/> 
     
     <!-- <param name="use_sim_time" value="true"/> -->
 
     <!-- <param name="robot_description" command="xacro '$(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro'"/> -->
-    <param name="robot_description" command="xacro '$(find mobile_robot)/urdf/robot_core.urdf.xacro'"/>
+    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
 
-    <arg name="rviz_config_file" default="$(find mobile_robot)/config/robot_config.rviz"/>
+    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller
@@ -26,7 +26,7 @@
 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find mobile_robot)/worlds/myrover_house.world"/>
+        <arg name="world_name" value="$(find my_4wheel_bot)/worlds/myrover_house.world"/>
         <arg name="paused" default="false"/>
         <arg name="use_sim_time" default="true"/>
         <arg name="gui" default="true"/>

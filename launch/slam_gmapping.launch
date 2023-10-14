@@ -7,7 +7,7 @@
     <param name="odom_frame" value="odom"/>
     <param name="map_frame" value="map"/>
     <param name="scan" value="scan"/>
-    <rosparam command="load" file="$(find mobile_robot)/config/gmapping_params.yaml" />
+    <rosparam command="load" file="$(find my_4wheel_bot)/config/gmapping_params.yaml" />
     <!-- <param name="maxUrange" value="10.0"/>
     <param name="sigma" value="0.05"/>
     <param name="kernelSize" value="1"/>
