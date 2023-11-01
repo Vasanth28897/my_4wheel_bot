@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <launch>
 
+  <arg name="use_map_topic" default="true"/>
+  <arg name="scan_topic" default="scan" />
+  
   <node pkg="amcl" type="amcl" name="amcl">
+      <param name="use_map_topic" value="$(arg use_map_topic)"/>
       <param name="odom_model_type" value="diff"/>
       <param name="odom_alpha5" value="0.1"/>
-      
+      <remap from="scan" to="$(arg scan_topic)"/>
 <!--Lowering transform_tolerance value may lead to Expolration Error. Adjust this value according to the processor capacity -->
       <param name="transform_tolerance" value="0.5" /> 
       

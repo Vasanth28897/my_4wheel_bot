@@ -31,29 +31,16 @@
 
     <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
-    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering"> -->
         <!-- <param name="default_topic" value="/cmd_vel"/> -->
-        <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/>
-    </node>
+        <!-- <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/> -->
+    <!-- </node> -->
         <!-- #run this command in another terminal when there is no /cmd_vel topic published, but /diff_drive_controller/cmd_vel to move the robot -->
         #rosrun teleop_twist_keyboard teleop_twist_keyboard.py --ros-args -r /cmd_vel:=/diff_drive_controller/cmd_vel
 
-    <!-- Navigation  -->
-
-    <arg name="map_file" default="$(find my_4wheel_bot)/maps/my_map.yaml"/>
-
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
-
-    <!-- amcl  -->
-    <include file="$(find my_4wheel_bot)/launch/amcl.launch" />
-
     <!-- Move_base -->
-    <arg name="base_global_planner" default="navfn/NavfnROS"/>
-    <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
+    <!-- <arg name="base_global_planner" default="navfn/NavfnROS"/> -->
 
-    <include file="$(find my_4wheel_bot)/launch/move_base.launch" >
-        <param name="base_global_planner" value="$(arg base_global_planner)"/>
-        <param name="base_local_planner" value="$(arg base_local_planner)"/>
-    </include>
+    <!-- <include file="$(find my_4wheel_bot)/launch/move_base.launch" > -->
+        <!-- <param name="base_global_planner" value="$(arg base_global_planner)"/> -->
 </launch>
-

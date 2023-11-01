@@ -1,15 +1,16 @@
+base_local_planner: base_local_planner/TrajectoryPlannerROS
 TrajectoryPlannerROS:
 
 # Robot Configuration Parameters
   max_vel_x: 0.45
-  min_vel_x: 0.1
+  min_vel_x: -0.25
 
   max_vel_theta:  1.0
   min_vel_theta: -1.0
   min_in_place_vel_theta: 0.4
 
   acc_lim_x: 3.2
-  acc_lim_y: 2.5
+  acc_lim_y: 0.0
   acc_lim_theta: 2.5
 
 # Goal Tolerance Parameters
@@ -17,15 +18,15 @@ TrajectoryPlannerROS:
   yaw_goal_tolerance: 0.05
 
 #for caster wheels or omni-directional wheels, set this true
-  holonomic_robot: true
+  holonomic_robot: false
 
 # Forward Simulation Parameters
-  sim_time: 0.8
-  vx_samples: 18
-  vtheta_samples: 20
-  sim_granularity: 0.05
+  # sim_time: 0.8
+  # vx_samples: 18
+  # vtheta_samples: 20
+  # sim_granularity: 0.05
 
 #Trajectory scoring parameters
   meter_scoring: true
-  dwa:  true
+  #dwa:  true
   #global_frame_id: odom

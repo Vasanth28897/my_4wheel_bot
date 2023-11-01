@@ -4,32 +4,4 @@ global_costmap:
   update_frequency: 5.0
   publish_frequency: 0.5  # Publish frequency in Hz
   static_map: true  # Set to true if using a static map
-# rolling_window: true  # Set to true for a smaller, rolling window costmap
-# width: 10.0  # Width of the costmap in meters
-# height: 10.0  # Height of the costmap in meters
-# resolution: 0.05  # Resolution of the costmap in meters per cell
-# transform_tolerance: 0.5
-#   inflation_radius: 0.55  # Radius for inflation of obstacles (adjust as needed)
-#   obstacle_range: 5.0  # Maximum range at which obstacles are inserted into the costmap
-#   observation_sources: laser_scan_sensor 
-#   laser_scan_sensor:
-#     data_type: LaserScan
-#     topic: scan  # Laser scan topic
-#     marking: true
-#     clearing: true
-#   # plugins:
-#   #   - name: obstacle_layer
-#   #     type: "costmap_2d::ObstacleLayer"
-#   #     enabled: true
-#   #   - name: inflation_layer
-#   #     type: "costmap_2d::InflationLayer"
-#   #     enabled: 
-
-# global_frame: /map
-# rolling_window: false
-# track_unknown_space: true
-
-#  plugins:
-#     - {name: static_map,       type: "costmap_2d::StaticLayer"}
-#     - {name: inflation_g,      type: "costmap_2d::InflationLayer"} 
-#     - {name: obstacles,        type: "costmap_2d::VoxelLayer"}
+  transform_tolerance: 0.5
