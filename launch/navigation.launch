@@ -5,7 +5,7 @@
 
     <rosparam file="$(find my_4wheel_bot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
     
-    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
+    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/myrobot.xacro'"/>
 
     <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
 
@@ -31,16 +31,7 @@
 
     <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
-    <!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering"> -->
-        <!-- <param name="default_topic" value="/cmd_vel"/> -->
-        <!-- <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/> -->
-    <!-- </node> -->
-        <!-- #run this command in another terminal when there is no /cmd_vel topic published, but /diff_drive_controller/cmd_vel to move the robot -->
-        #rosrun teleop_twist_keyboard teleop_twist_keyboard.py --ros-args -r /cmd_vel:=/diff_drive_controller/cmd_vel
-
-    <!-- Move_base -->
-    <!-- <arg name="base_global_planner" default="navfn/NavfnROS"/> -->
-
-    <!-- <include file="$(find my_4wheel_bot)/launch/move_base.launch" > -->
-        <!-- <param name="base_global_planner" value="$(arg base_global_planner)"/> -->
+    <!-- <include file="$(find my_4wheel_bot)/launch/move_base.launch" >
+        <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    </include> -->
 </launch>

@@ -7,7 +7,7 @@
 
     <include file="$(find my_4wheel_bot)/launch/slam_gmapping.launch"/> 
     
-    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
+    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/myrobot.xacro'"/>
 
     <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
 

@@ -34,10 +34,10 @@
 
   <transmission name="rear_right_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <actuator name="rear_right__wheel_motor">
+      <actuator name="rear_right_wheel_motor">
           <mechanicalReduction>1</mechanicalReduction>
       </actuator>
-      <joint name="rear_right__wheel_joint">
+      <joint name="rear_right_wheel_joint">
           <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
   </transmission>

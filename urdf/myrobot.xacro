@@ -1,0 +1,208 @@
+<?xml version="1.0" ?>
+<robot name="my_rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- <xacro:include filename="$(find my_4wheel_bot)/urdf/materials.xacro" /> -->
+<xacro:include filename="$(find my_4wheel_bot)/urdf/myrobot.trans" />
+<xacro:include filename="$(find my_4wheel_bot)/urdf/myrobot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0017022308438409664 -8.821481103520157e-18 0.02552376333656643" rpy="0 0 0"/>
+    <mass value="0.54643"/>
+    <inertia ixx="0.000482" iyy="0.001869" izz="0.002284" ixy="0.0" iyz="-0.0" ixz="1.8e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 3.14"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba = "1.0 1.0 1.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_right_wheel_1">
+  <inertial>
+    <origin xyz="0.0 -0.0075 -6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.027390760948486005"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.065 0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba = "0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.065 0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_wheel_1">
+  <inertial>
+    <origin xyz="-2.7755575615628914e-17 -0.0075 -6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.027390760948486012"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.065 0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba = "0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.065 0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_left_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.0075 -6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.027390760948486005"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.065 -0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba = "0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.065 -0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_wheel_1">
+  <inertial>
+    <origin xyz="-2.7755575615628914e-17 0.0075 -6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.027390760948486012"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.065 -0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba = "0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.065 -0.055 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_1">
+  <inertial>
+    <origin xyz="-0.002500000000000016 0.0 -7.28583859910259e-17" rpy="0 0 0"/>
+    <mass value="0.0010999999999999998"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.1025 -0.0 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba="0.9764705882352941 0.45098039215686275 0.023529411764705882 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.1025 -0.0 -0.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="0.0 1.766974823035288e-18 0.003999999999999997" rpy="0 0 0"/>
+    <mass value="0.0027646015351590167"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.065 0.0 -0.0525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="">
+      <color rgba="0.0 0.0 0.8 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.065 0.0 -0.0525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://my_4wheel_bot/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rear_right_wheel_joint" type="continuous">
+  <origin xyz="-0.065 -0.055 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="front_right_wheel_joint" type="continuous">
+  <origin xyz="0.065 -0.055 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="rear_left_wheel_joint" type="continuous">
+  <origin xyz="-0.065 0.055 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="front_left_wheel_joint" type="continuous">
+  <origin xyz="0.065 0.055 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="camera_joint" type="fixed">
+  <origin xyz="0.1025 0.0 0.025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_1"/>
+</joint>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.065 0.0 0.0525" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>

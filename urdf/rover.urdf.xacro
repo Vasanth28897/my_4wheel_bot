@@ -18,7 +18,7 @@
     </xacro:macro> -->
     
     <!-- Dummy_link -->
-    <link name="base_footprint">
+    <!-- <link name="base_footprint">
         
     </link>
 
@@ -26,7 +26,7 @@
         <parent link="base_link"/>
         <child link="base_footprint"/>
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-    </joint>
+    </joint> -->
 
     <!-- rover base link -->
     <link name="base_link">
@@ -176,16 +176,18 @@
         <axis xyz="0.0 0.0 1.0"/>
         <!-- <origin xyz="${x} ${y} 0.15" rpy="0.0 0.0 0.0"/> -->
         <!-- <axis xyz="0.0 1.0 0.0"/> -->
-        <!-- <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="6.0"/>  -->
+        <limit effort="10000" velocity="1000"/> 
     </joint>
 
     <!-- This block provides the simulator (Gazebo) with information on a few additional
     physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
     <gazebo reference="${name}_wheel">
-      <mu1 value="200.0"/>
-      <mu2 value="100.0"/>
-      <kp value="500000.0" />
-      <kd value="1.0" />
+      <mu1 value="1"/>
+      <mu2 value="1"/>
+      <kp value="1000000.0" />
+      <kd value="100.0" />
+      <slip1 value="0.5" />
+      <slip2 value="0.5" />
       <material>Gazebo/Red</material>
     </gazebo>
 

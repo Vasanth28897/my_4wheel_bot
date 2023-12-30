@@ -2,7 +2,7 @@
 <launch>
     
     <!--<param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/my_rover.urdf'"/> -->
-    <arg  name="model" default="$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro"/>
+    <arg  name="model" default="$(find my_4wheel_bot)/urdf/myrobot.xacro"/>
     <arg name="gui" default="true" />
     
     <param name="robot_description" command="xacro $(arg model)"/>
