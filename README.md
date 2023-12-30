@@ -9,19 +9,24 @@ roslaunch my_4wheel_bot view_model.launch
 ```
 
 ##run this command to generate the map using slam_gmapping and rqt_steering_robot, make sure to change the world_name arg in navigation.launch file if you want to add a new world in gazebo
-NOTE: the angular velocity lag when the bot rotates to generate the map. Don't know why.
+
 
 ```
 roslaunch my_4wheel_bot slam.launch
 ```
 
-##run this command to save the generated map 
+run this command to save the generated map 
 
 ```
 rosrun map_server map_saver -f path/to/save/the/map/mapname
 ```
+replace the file_name in this line in the move_base.launch file after saved the map
 
-##run this both two commands seperate terminal
+```
+<arg name="map_file" default="$(find my_4wheel_bot)/maps/file_name"/>
+```
+
+run these both two commands seperate terminal
 
 ```
 roslaunch my_4wheel_bot navigation.launch
