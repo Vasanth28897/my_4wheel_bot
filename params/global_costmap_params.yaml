@@ -2,6 +2,6 @@ global_costmap:
   global_frame: map
   robot_base_frame: base_link
   update_frequency: 5.0
-  publish_frequency: 0.5  # Publish frequency in Hz
-  static_map: true  # Set to true if using a static map
-  transform_tolerance: 0.5
+  publish_frequency: 20.0  # Publish frequency in Hz
+  static_map: false  # Set to true if using a static map
+

@@ -3,7 +3,6 @@
     <!-- change the below line if you generated a new map -->
     <arg name="map_file" default="$(find my_4wheel_bot)/maps/my_map.yaml"/>
     <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
-
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
     
     # amcl 
@@ -14,9 +13,11 @@
         <rosparam file="$(find my_4wheel_bot)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
         <rosparam file="$(find my_4wheel_bot)/params/local_costmap_params.yaml" command="load" />
         <rosparam file="$(find my_4wheel_bot)/params/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find my_4wheel_bot)/params/base_local_planner_params.yaml" command="load" />
         <rosparam file="$(find my_4wheel_bot)/params/navfn_planner.yaml" command="load" />
         <rosparam file="$(find my_4wheel_bot)/params/dwa_local_planner_params.yaml" command="load" />
         <rosparam file="$(find my_4wheel_bot)/params/recovery_behaviors.yaml" command="load" />
+        <remap from="/cmd_vel" to="/diff_drive_controller/cmd_vel"/>
     </node>
 
 </launch>

@@ -7,9 +7,9 @@
 
     <include file="$(find my_4wheel_bot)/launch/slam_gmapping.launch"/> 
     
-    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/myrobot.xacro'"/>
+    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
 
-    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
+    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/rviz/slam.rviz"/>
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller

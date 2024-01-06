@@ -5,9 +5,9 @@
 
     <rosparam file="$(find my_4wheel_bot)/config/joint_state_controller.yaml" command="load" ns = "joint_state_controller"/>
     
-    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/myrobot.xacro'"/>
+    <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
 
-    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/config/robot_config.rviz"/>
+    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/rviz/robot_config.rviz"/>
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller
@@ -31,7 +31,4 @@
 
     <node name="spawning_lidar" pkg="gazebo_ros" type="spawn_model" args=" -urdf -param robot_description -model my_rover" />
 
-    <!-- <include file="$(find my_4wheel_bot)/launch/move_base.launch" >
-        <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
-    </include> -->
 </launch>

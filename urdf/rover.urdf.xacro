@@ -3,30 +3,12 @@
 
     
     <xacro:property name="constant"     value = "0.083333333"/> #1/12
-    <xacro:property name="mass"         value = "0.5"/>
+    <xacro:property name="mass"         value = "5"/>
     <xacro:property name="width"        value = "0.75"/> 
     <xacro:property name="height"       value = "0.15"/>
     <xacro:property name="depth"        value = "0.4"/>
-    <xacro:property name="radius"        value = "0.033"/>
-    <xacro:property name="length"        value = "0.018"/>
-
-    <!-- <xacro:macro name="default_inertial" params="mass">
-        <inertial>
-            <mass value="${mass}" />
-            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
-        </inertial>
-    </xacro:macro> -->
-    
-    <!-- Dummy_link -->
-    <!-- <link name="base_footprint">
-        
-    </link>
-
-    <joint name="base_footprint_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="base_footprint"/>
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-    </joint> -->
+    <xacro:property name="wheel_radius" value = "0.15"/>
+    <xacro:property name="wheel_length" value = "0.1"/>
 
     <!-- rover base link -->
     <link name="base_link">
@@ -41,25 +23,22 @@
     
     <link name="Chassis">
         <visual>
-            <origin xyz="0.0 0.0 0.15" rpy="0.0 0.0 0.0"/>           
+            <origin xyz="0.0 0.0 ${height}" rpy="0.0 0.0 0.0"/>           
             <geometry>
-                <box size="0.75 0.4 0.15" />
+                <box size="${width} ${depth} ${height}" />
             </geometry>
             <material name="">
                 <color rgba="1.0 0.3 0.1 1.0"/>
             </material>
         </visual>
         <collision>
-            <origin xyz="0.0 0.0 0.15" rpy="0.0 0.0 0.0"/>           
+            <origin xyz="0.0 0.0 ${height}" rpy="0.0 0.0 0.0"/>           
             <geometry>
-                <box size="0.75 0.4 0.15" />
+                <box size="${width} ${depth} ${height}" />
             </geometry>
         </collision>
         <inertial>
-            <!-- <inertia ixx="${(constant) * (mass * (height*height + depth*depth))}" ixy="0.0" ixz="0.0" 
-                iyy="${(constant) * (mass * (width*width + depth*depth))}" iyz="0.0" 
-                izz="${(constant) * (mass * (width*width + height*height))}"/> -->
-            <mass value="5"/>
+            <mass value="${mass}"/>
             <inertia ixx="${(constant) * (5 * (height*height + depth*depth))}" ixy="0.0" ixz="0.0" 
                     iyy="${(constant) * (5 * (width*width + depth*depth))}" iyz="0.0" 
                     izz="${(constant) * (5 * (width*width + height*height))}"/>
@@ -97,49 +76,12 @@
         <material> Gazebo/Black</material>
     </gazebo>
 
-    <!-- <joint name="caster_joint" type="continuous">
-        <parent link="Chassis"/>
-        <child link="caster_link"/>
-        <origin xyz="0.2 0 0.15" rpy="0 0 0"/>
-    </joint>
-
-    <link name="caster_link">
-        <visual>                     
-            <geometry>
-                <sphere radius="0.05"/>
-            </geometry>
-            <material name="">
-                <color rgba="1.0 0.0 0.0 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <sphere radius="0.05"/>
-            </geometry>
-        </collision>
-
-        <inertial>
-        <origin xyz="0 0 0" />
-        <mass value="0.005" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                iyy="0.001" iyz="0.0"
-                izz="0.001" />
-        </inertial>
-    </link> 
-
-    <gazebo reference = "caster_link">
-        <material> Gazebo/Red</material>
-    </gazebo> -->
-
-    <!-- <xacro:macro name="wheel" params="name path x y"> -->
     <xacro:macro name="wheel" params="name x y">
 
     <link name = "${name}_wheel">
         <visual> 
             <geometry>
-                <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
-                <cylinder length="0.1" radius="0.15"/>
-                <!-- <mesh filename="${path}" scale="0.005 0.005 0.005"/> #length = 0.0182 radius = "0.0330" -->
+                <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
             </geometry>
             <material name="">
                 <color rgba="1.0 0.0 0.0 1.0"/>
@@ -147,20 +89,11 @@
         </visual>
         <collision>
             <geometry>
-                <!-- <origin xyz="0.0 0.0 0.0" rpy="-1.57 0.0 0.0"/> -->
-                <cylinder length="0.1" radius="0.15"/>
-                <!-- <mesh filename="${path}" scale="0.005 0.005 0.005"/> #length = 0.018 diameter = "0.066" -->
+                <sphere radius="${wheel_radius}"/>
                 <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
             </geometry>
         </collision>
         <inertial>
-            <!-- <inertia ixx="${constant * mass * ((3*radius*radius) + (length*length))}" ixy="0.0" ixz="0.0"
-            iyy="${constant * mass * ((3*radius*radius) + (length*length))}" iyz="0.0"
-            izz="${constant * mass * (radius*radius)}" /> -->
-            <!-- <mass value="2.8498940e-02" />
-            <inertia ixx="1.1175580e-05" ixy="-4.2369783e-11" ixz="-5.9381719e-09"
-            iyy="1.1192413e-05" iyz="-1.4400107e-11"
-            izz="2.0712558e-05" />        -->
             <mass value="2" />
             <inertia ixx="0.1291615" ixy="0.0" ixz="0" 
             iyy="0.1291615" iyz="0" 
@@ -174,8 +107,6 @@
         <child link="${name}_wheel"/>        
         <origin xyz="${x} ${y} 0.15" rpy="-1.57 0.0 0.0"/>        
         <axis xyz="0.0 0.0 1.0"/>
-        <!-- <origin xyz="${x} ${y} 0.15" rpy="0.0 0.0 0.0"/> -->
-        <!-- <axis xyz="0.0 1.0 0.0"/> -->
         <limit effort="10000" velocity="1000"/> 
     </joint>
 
@@ -196,6 +127,7 @@
     <transmission name="${name}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <actuator name="${name}_wheel_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
       <joint name="${name}_wheel_joint">
@@ -204,12 +136,6 @@
     </transmission>
 
   </xacro:macro>
-
-    <!-- wheel creating using macros -->
-    <!-- <xacro:wheel name = "front_left" path ="package://my_4wheel_bot/meshes/right_tire.stl" x = "0.2" y = "0.25"/>
-    <xacro:wheel name = "front_right" path ="package://my_4wheel_bot/meshes/left_tire.stl" x = "0.2" y = "-0.25"/>
-    <xacro:wheel name = "rear_left" path ="package://my_4wheel_bot/meshes/right_tire.stl" x = "-0.2" y = "0.25"/>
-    <xacro:wheel name = "rear_right" path ="package://my_4wheel_bot/meshes/left_tire.stl" x = "-0.2" y = "-0.25"/> -->
 
     <xacro:wheel name = "front_left"    x = "0.2"     y = "0.25"/>
     <xacro:wheel name = "front_right"   x = "0.2"     y = "-0.25"/>
