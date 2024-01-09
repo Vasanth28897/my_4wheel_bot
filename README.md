@@ -39,5 +39,6 @@ TODO
 ----
 
 * the laser scan moves when the bot start moves to the given goal.
+* the robot is moving backwards when the 2d_nav_goal is set behind the robot. It has to rotate and reach the goal by heading forward.
 * maybe add some other cool stuffs over this basic robot.
 
