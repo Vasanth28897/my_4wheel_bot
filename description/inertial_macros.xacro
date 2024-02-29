@@ -1,3 +1,4 @@
+<!-- # this one is not used in this robot -->
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 

@@ -2,13 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_rover">
 
     
-    <xacro:property name="constant"     value = "0.083333333"/> #1/12
-    <xacro:property name="mass"         value = "5"/>
-    <xacro:property name="width"        value = "0.75"/> 
-    <xacro:property name="height"       value = "0.15"/>
-    <xacro:property name="depth"        value = "0.4"/>
-    <xacro:property name="wheel_radius" value = "0.15"/>
-    <xacro:property name="wheel_length" value = "0.1"/>
+    <xacro:property name="constant"         value = "0.083333333"/> #1/12
+    <xacro:property name="chassis_mass"     value = "0.5"/>
+    <xacro:property name="chassis_wheel"    value = "0.1"/>
+    <xacro:property name="width"            value = "0.75"/> 
+    <xacro:property name="height"           value = "0.15"/>
+    <xacro:property name="depth"            value = "0.4"/>
+    <xacro:property name="wheel_radius"     value = "0.15"/>
+    <xacro:property name="wheel_length"     value = "0.1"/>
 
     <!-- rover base link -->
     <link name="base_link">
@@ -38,10 +39,10 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="${mass}"/>
-            <inertia ixx="${(constant) * (5 * (height*height + depth*depth))}" ixy="0.0" ixz="0.0" 
-                    iyy="${(constant) * (5 * (width*width + depth*depth))}" iyz="0.0" 
-                    izz="${(constant) * (5 * (width*width + height*height))}"/>
+            <mass value="${chassis_mass}"/>
+            <inertia ixx="${(constant) * (0.5 * (height*height + depth*depth))}" ixy="0.0" ixz="0.0" 
+                    iyy="${(constant) * (0.5 * (width*width + depth*depth))}" iyz="0.0" 
+                    izz="${(constant) * (0.5 * (width*width + height*height))}"/>
         </inertial>
         
     </link>
@@ -94,10 +95,13 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="2" />
-            <inertia ixx="0.1291615" ixy="0.0" ixz="0" 
-            iyy="0.1291615" iyz="0" 
-            izz="0.0374985" />
+            <mass value="${chassis_wheel}" />
+            <inertia ixx="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" ixy="0.0" ixz="0.0"
+            iyy="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" iyz="0.0"
+            izz="${0.5 * 0.1 * (wheel_radius*wheel_radius)}" /> #1/2
+            <!-- <inertia ixx="0.000645833" ixy="0.0" ixz="0" 
+            iyy="0.000645833" iyz="0" 
+            izz="0.001125" /> -->
 
         </inertial>
         
@@ -107,6 +111,7 @@
         <child link="${name}_wheel"/>        
         <origin xyz="${x} ${y} 0.15" rpy="-1.57 0.0 0.0"/>        
         <axis xyz="0.0 0.0 1.0"/>
+        <dynamics damping="0"/>
         <limit effort="10000" velocity="1000"/> 
     </joint>
 

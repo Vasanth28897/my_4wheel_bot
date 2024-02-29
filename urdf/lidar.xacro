@@ -41,15 +41,15 @@
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>360</samples>
+                        <samples>720</samples>
                         <resolution>1</resolution>
-                        <min_angle>-3.14159</min_angle>  <!-- -135 degrees in radians -->
-                        <max_angle>3.14159</max_angle>   <!-- 135 degrees in radians -->
+                        <min_angle>-3.14159</min_angle>  <!-- -180 degrees in radians -->
+                        <max_angle>3.14159</max_angle>   <!-- 180 degrees in radians -->
                     </horizontal>
                 </scan>
                 <range>
-                    <min>0.3</min>   <!-- Minimum range in meters -->
-                    <max>30</max>   <!-- Maximum range in meters -->
+                    <min>0.10</min>   <!-- Minimum range in meters -->
+                    <max>30.0</max>   <!-- Maximum range in meters -->
                     <resolution>0.01</resolution>   <!-- Range resolution in meters -->
                 </range>
                 <noise>

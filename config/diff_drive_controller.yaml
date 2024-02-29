@@ -20,17 +20,17 @@ linear:
   x:
     has_velocity_limits    : true
     max_velocity           : 2.75   # m/s
-    min_velocity           : -0.1   # m/s
+    #min_velocity           : -0.1   # m/s
     has_acceleration_limits: true
-    max_acceleration       : 4.00   # m/s^2
-    min_acceleration       : -0.2  # m/s^2
+    max_acceleration       : 20.00   # m/s^2
+    #min_acceleration       : -0.2  # m/s^2
 
 angular:
   z:
     has_velocity_limits    : true
-    max_velocity           : 3.45   # rad/s
+    max_velocity           : 4.75   # rad/s
     has_acceleration_limits: true
-    max_acceleration       : 3.00   # rad/s^2
+    max_acceleration       : 25.00   # rad/s^2
 
 
 

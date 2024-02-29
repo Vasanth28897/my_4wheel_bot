@@ -24,7 +24,8 @@
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <!-- comment out this below line if you want to add a new world in gazebo -->
-        <arg name="world_name" value="$(find my_4wheel_bot)/worlds/myrover_house.world"/>
+        <!-- <arg name="world_name" value="$(find my_4wheel_bot)/worlds/myrover_house.world"/> -->
+        <arg name="world_name" value="$(find my_4wheel_bot)/worlds/clearpath_playpen.world"/>
         <arg name="paused" default="false"/>
         <arg name="use_sim_time" default="true"/>
         <arg name="gui" default="true"/>

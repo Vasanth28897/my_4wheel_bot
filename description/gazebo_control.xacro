@@ -1,3 +1,4 @@
+ <!-- this one is not used in this robot -->
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name = "my_rover">
     
@@ -35,16 +36,16 @@
             <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
             <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
             <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
-            <wheelSeparation>0.4</wheelSeparation>
-            <wheelDiameter>0.066</wheelDiameter>
+            <wheelSeparation>0.45</wheelSeparation>
+            <wheelDiameter>0.15</wheelDiameter>
             <robotBaseFrame>base_link</robotBaseFrame>
             <torque>200</torque>
             <commandTopic>cmd_vel</commandTopic>
             <odometryTopic>odom</odometryTopic>
             <odometryFrame>odom</odometryFrame>
-            <covariance_x>0.000100</covariance_x>
-            <covariance_y>0.000100</covariance_y>
-            <covariance_yaw>0.010000</covariance_yaw>
+            <covariance_x>100.0</covariance_x>
+            <covariance_y>100.0</covariance_y>
+            <covariance_yaw>100.0</covariance_yaw>
             <broadcastTF>true</broadcastTF>
         </plugin>
     </gazebo>

@@ -7,7 +7,7 @@
     
     <param name="robot_description" command="xacro '$(find my_4wheel_bot)/urdf/robot_core.urdf.xacro'"/>
 
-    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/rviz/robot_config.rviz"/>
+    <arg name="rviz_config_file" default="$(find my_4wheel_bot)/rviz/navigation.rviz"/>
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner" output = "screen" 
         args = "diff_drive_controller
@@ -21,7 +21,8 @@
 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find my_4wheel_bot)/worlds/myrover_house.world"/>
+        <!-- <arg name="world_name" value="$(find my_4wheel_bot)/worlds/myrover_house.world"/> -->
+        <arg name="world_name" value="$(find my_4wheel_bot)/worlds/clearpath_playpen.world"/>
         <arg name="paused" default="false"/>
         <arg name="use_sim_time" default="true"/>
         <arg name="gui" default="true"/>
