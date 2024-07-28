@@ -77,9 +77,8 @@
         <material> Gazebo/Black</material>
     </gazebo>
 
-    <xacro:macro name="wheel" params="name x y">
 
-    <link name = "${name}_wheel">
+    <link name = "front_left_wheel">
         <visual> 
             <geometry>
                 <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
@@ -106,10 +105,10 @@
         </inertial>
         
     </link>
-    <joint name="${name}_wheel_joint" type="continuous">
+    <joint name="front_left_wheel_joint" type="continuous">
         <parent link="Chassis"/>
-        <child link="${name}_wheel"/>        
-        <origin xyz="${x} ${y} 0.15" rpy="-1.57 0.0 0.0"/>        
+        <child link="front_left_wheel"/>        
+        <origin xyz="0.2 0.25 0.15" rpy="-1.57 0.0 0.0"/>        
         <axis xyz="0.0 0.0 1.0"/>
         <dynamics damping="0"/>
         <limit effort="10000" velocity="1000"/> 
@@ -117,7 +116,7 @@
 
     <!-- This block provides the simulator (Gazebo) with information on a few additional
     physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
-    <gazebo reference="${name}_wheel">
+    <gazebo reference="front_left_wheel">
       <mu1 value="1"/>
       <mu2 value="1"/>
       <kp value="1000000.0" />
@@ -129,6 +128,245 @@
 
     <!-- This block connects the wheel joint to an actuator (motor), which informs both
     simulation and visualization of the robot -->
+    <transmission name="front_left_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="front_left_wheel_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="front_left_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <!-- front_right_wheel -->
+    <link name = "front_right_wheel">
+        <visual> 
+            <geometry>
+                <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
+            </geometry>
+            <material name="">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+                <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${chassis_wheel}" />
+            <inertia ixx="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" ixy="0.0" ixz="0.0"
+            iyy="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" iyz="0.0"
+            izz="${0.5 * 0.1 * (wheel_radius*wheel_radius)}" /> #1/2
+
+        </inertial>
+        
+    </link>
+    <joint name="front_right_wheel_joint" type="continuous">
+        <parent link="Chassis"/>
+        <child link="front_right_wheel"/>        
+        <origin xyz="0.2 -0.25 0.15" rpy="1.57 0.0 0.0"/>        
+        <axis xyz="0.0 0.0 -1.0"/>
+        <dynamics damping="0"/>
+        <limit effort="10000" velocity="1000"/> 
+    </joint>
+
+    <!-- This block provides the simulator (Gazebo) with information on a few additional
+    physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
+    <gazebo reference="front_right_wheel">
+      <mu1 value="1"/>
+      <mu2 value="1"/>
+      <kp value="1000000.0" />
+      <kd value="100.0" />
+      <slip1 value="0.5" />
+      <slip2 value="0.5" />
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- This block connects the wheel joint to an actuator (motor), which informs both
+    simulation and visualization of the robot -->
+    <transmission name="front_right_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="front_right_wheel_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="front_right_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <link name = "rear_left_wheel">
+        <visual> 
+            <geometry>
+                <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
+            </geometry>
+            <material name="">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+                <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${chassis_wheel}" />
+            <inertia ixx="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" ixy="0.0" ixz="0.0"
+            iyy="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" iyz="0.0"
+            izz="${0.5 * 0.1 * (wheel_radius*wheel_radius)}" /> #1/2
+            <!-- <inertia ixx="0.000645833" ixy="0.0" ixz="0" 
+            iyy="0.000645833" iyz="0" 
+            izz="0.001125" /> -->
+
+        </inertial>
+        
+    </link>
+    <joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="Chassis"/>
+        <child link="rear_left_wheel"/>        
+        <origin xyz="-0.2 0.25 0.15" rpy="-1.57 0.0 0.0"/>        
+        <axis xyz="0.0 0.0 1.0"/>
+        <dynamics damping="0"/>
+        <limit effort="10000" velocity="1000"/> 
+    </joint>
+
+    <!-- This block provides the simulator (Gazebo) with information on a few additional
+    physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
+    <gazebo reference="rear_left_wheel">
+      <mu1 value="1"/>
+      <mu2 value="1"/>
+      <kp value="1000000.0" />
+      <kd value="100.0" />
+      <slip1 value="0.5" />
+      <slip2 value="0.5" />
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- This block connects the wheel joint to an actuator (motor), which informs both
+    simulation and visualization of the robot -->
+    <transmission name="rear_left_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="rear_left_wheel_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="rear_left_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <link name = "rear_right_wheel">
+        <visual> 
+            <geometry>
+                <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
+            </geometry>
+            <material name="">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+                <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${chassis_wheel}" />
+            <inertia ixx="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" ixy="0.0" ixz="0.0"
+            iyy="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" iyz="0.0"
+            izz="${0.5 * 0.1 * (wheel_radius*wheel_radius)}" /> #1/2
+            <!-- <inertia ixx="0.000645833" ixy="0.0" ixz="0" 
+            iyy="0.000645833" iyz="0" 
+            izz="0.001125" /> -->
+
+        </inertial>
+        
+    </link>
+    <joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="Chassis"/>
+        <child link="rear_right_wheel"/>        
+        <origin xyz="-0.2 -0.25 0.15" rpy="1.57 0.0 0.0"/>        
+        <axis xyz="0.0 0.0 -1.0"/>
+        <dynamics damping="0"/>
+        <limit effort="10000" velocity="1000"/> 
+    </joint>
+
+    <!-- This block provides the simulator (Gazebo) with information on a few additional
+    physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
+    <gazebo reference="rear_right_wheel">
+      <mu1 value="1"/>
+      <mu2 value="1"/>
+      <kp value="1000000.0" />
+      <kd value="100.0" />
+      <slip1 value="0.5" />
+      <slip2 value="0.5" />
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- This block connects the wheel joint to an actuator (motor), which informs both
+    simulation and visualization of the robot -->
+    <transmission name="rear_right_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="rear_right_wheel_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="rear_right_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+
+
+    <!-- <xacro:macro name="wheel" params="name x y">
+
+    <link name = "${name}_wheel">
+        <visual> 
+            <geometry>
+                <cylinder length="${wheel_length}" radius="${wheel_radius}"/>
+            </geometry>
+            <material name="">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+                <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${chassis_wheel}" />
+            <inertia ixx="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" ixy="0.0" ixz="0.0"
+            iyy="${(constant) * 0.1 * (3*wheel_radius*wheel_radius + wheel_length*wheel_length)}" iyz="0.0"
+            izz="${0.5 * 0.1 * (wheel_radius*wheel_radius)}" /> #1/2
+
+        </inertial>
+        
+    </link>
+    <joint name="${name}_wheel_joint" type="continuous">
+        <parent link="Chassis"/>
+        <child link="${name}_wheel"/>        
+        <origin xyz="${x} ${y} 0.15" rpy="-1.57 0.0 0.0"/>        
+        <axis xyz="0.0 0.0 1.0"/>
+        <dynamics damping="0"/>
+        <limit effort="10000" velocity="1000"/> 
+    </joint>
+
+    <gazebo reference="${name}_wheel">
+      <mu1 value="1"/>
+      <mu2 value="1"/>
+      <kp value="1000000.0" />
+      <kd value="100.0" />
+      <slip1 value="0.5" />
+      <slip2 value="0.5" />
+      <material>Gazebo/Red</material>
+    </gazebo>
+
     <transmission name="${name}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <actuator name="${name}_wheel_motor">
@@ -145,6 +383,6 @@
     <xacro:wheel name = "front_left"    x = "0.2"     y = "0.25"/>
     <xacro:wheel name = "front_right"   x = "0.2"     y = "-0.25"/>
     <xacro:wheel name = "rear_left"     x = "-0.2"    y = "0.25"/>
-    <xacro:wheel name = "rear_right"    x = "-0.2"    y = "-0.25"/>
+    <xacro:wheel name = "rear_right"    x = "-0.2"    y = "-0.25"/> -->
 
 </robot>
